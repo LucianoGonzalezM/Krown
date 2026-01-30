@@ -1,0 +1,398 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-dark: #0f0f0f;
+    --bg-card: #1a1a1a;
+    --text-main: #f5f5f5;
+    --text-muted: #a0a0a0;
+    --gold: #D4AF37; /* Color dorado Krown */
+    --gold-hover: #b5952f;
+    
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+/* --- RESET & BASICS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    overflow-x: hidden; /* Evita scroll lateral */
+}
+
+/* Evitar scroll cuando el Age Gate está activo */
+body.no-scroll {
+    overflow: hidden;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- COMPONENTES --- */
+.text-gold { color: var(--gold); }
+
+.btn {
+    padding: 12px 30px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-gold {
+    background-color: var(--gold);
+    color: #000;
+}
+
+.btn-gold:hover {
+    background-color: var(--gold-hover);
+}
+
+.btn-outline {
+    border-color: var(--text-main);
+    background: transparent;
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* --- AGE GATE --- */
+.age-gate-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Efecto borroso de fondo */
+    transition: opacity 0.5s ease;
+}
+
+.age-gate-content {
+    text-align: center;
+    max-width: 500px;
+    padding: 40px;
+    border: 1px solid #333;
+}
+
+.logo-text { font-size: 3rem; margin-bottom: 20px; letter-spacing: 5px; }
+.age-gate-content p { margin: 20px 0; color: var(--text-muted); }
+.age-buttons { gap: 20px; display: flex; justify-content: center; }
+.legal-small { font-size: 0.8rem; margin-top: 30px; opacity: 0.5; }
+
+/* --- NAVBAR FIJO --- */
+.navbar {
+    padding: 20px 0;
+    position: fixed; /* CAMBIO CLAVE: De absolute a fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Aumentamos el z-index para que tape todo lo demás */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); /* Fondo inicial degradado */
+    transition: all 0.4s ease; /* Suaviza el cambio de color y tamaño */
+}
+
+/* Esta clase se activa con JS al hacer scroll */
+.navbar.scrolled {
+    background: #0f0f0f; /* Color sólido (negro) al bajar */
+    padding: 10px 0; /* La barra se hace un poco más fina (opcional) */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Una sombra sutil */
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links { display: flex; gap: 30px; }
+
+.nav-links a {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+/* --- ESTILOS DEL LOGO (IMAGEN) --- */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Quita subrayados si los hubiera */
+}
+
+.logo-img {
+    height: 50px; /* Altura ideal para escritorio. Ajusta este número según el formato de tu logo */
+    width: auto;  /* Mantiene la proporción para que no se estire */
+    object-fit: contain;
+    transition: transform 0.3s ease; /* Animación suave al pasar el mouse */
+}
+
+/* Efecto visual al pasar el mouse */
+.logo-container:hover .logo-img {
+    transform: scale(1.05); /* Crece un poquito (5%) */
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    height: 100vh;
+    background-image: url(images/FondoKrown.png); /* Imagen fondo bar */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.776); /* Oscurece la imagen para leer el texto */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+
+.hero-content .subtitle {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    color: var(--gold);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+/* --- PRODUCTOS (SWIPER) --- */
+.products-section {
+    padding: 65px 0;
+    background-color: var(--bg-dark);
+}
+
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.line-gold { width: 60px; height: 3px; background: var(--gold); margin: 0 auto; }
+
+/* Estilos de la Tarjeta */
+.swiper {
+    width: 100%;
+    padding-bottom: 50px; /* Espacio para la paginación */
+}
+
+.product-card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+    cursor: grab;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+}
+
+.card-img {
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img img {
+    transform: scale(1.1);
+}
+
+.card-info { padding: 25px; text-align: center; }
+
+.card-info h3 { font-size: 1.5rem; margin-bottom: 5px; color: var(--gold); }
+.card-info .type { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 15px; }
+.card-info .desc { font-size: 0.95rem; line-height: 1.5; }
+
+/* Swiper Customization */
+.swiper-pagination-bullet { background: var(--text-muted); }
+.swiper-pagination-bullet-active { background: var(--gold); }
+.swiper-button-next, .swiper-button-prev { color: var(--gold); }
+
+/* --- FOOTER --- */
+footer {
+    padding: 50px 0;
+    background: #000;
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.footer-logo { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); margin-bottom: 20px; }
+.warning { margin-top: 30px; font-size: 0.75rem; color: #555; border: 1px solid #333; display: inline-block; padding: 10px 20px; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .nav-links { display: none; } /* En móvil ocultamos menú por simplicidad */
+    .logo-img {
+        height: 40px; /* Un poco más pequeño en celulares para que no choque con el menú hamburguesa */
+    }
+}
+
+/* --- ESTILOS MENÚ HAMBURGUESA --- */
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--gold);
+    margin: 3px 0;
+    transition: 0.4s;
+}
+/* --- BOTÓN FLOTANTE WHATSAPP --- */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; /* Verde oficial WhatsApp */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 2000; /* Para que quede por encima de todo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1); /* Efecto pop al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); /* Resplandor verde */
+}
+
+/* --- ICONOS SOCIALES EN FOOTER --- */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.social-icons a {
+    color: #fff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--gold); /* Se ponen dorados al pasar el mouse */
+    transform: translateY(-3px);
+}
+
+/* RESPONSIVE (Móvil y Tablet) */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    
+    /* Botón visible en móvil */
+    .menu-toggle { display: flex; }
+
+    /* Menú estilo "Cortina" o Dropdown */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Altura del navbar */
+        left: 0;
+        width: 100%;
+        background-color: rgba(15, 15, 15, 0.95); /* Fondo oscuro semitransparente */
+        text-align: center;
+        padding: 20px 0;
+        transform: translateY(-200%); /* Oculto hacia arriba */
+        transition: transform 0.4s ease-in-out;
+        border-bottom: 1px solid #333;
+    }
+
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-btn svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Clase para mostrar el menú */
+    .nav-links.active {
+        transform: translateY(0); /* Baja a su posición */
+    }
+
+    .nav-links li { margin: 15px 0; }
+    
+    /* Animación del icono a una "X" */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+/* --- AJUSTE DE ESPACIO ENTRE SECCIONES --- */
+
+/* 1. Quitamos espacio abajo a la sección de Botellas */
+#products {
+    padding-bottom: 10px; /* Puedes probar con 0px o 20px */
+}
+
+/* 2. Quitamos espacio arriba a la sección de Petacas */
+#petacas {
+    padding-top: 10px; /* Puedes probar con 0px o 20px */
+}
