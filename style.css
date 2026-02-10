@@ -396,3 +396,127 @@ footer {
 #petacas {
     padding-top: 10px; /* Puedes probar con 0px o 20px */
 }
+
+/* --- SECCIÓN LEGADO (STORY) --- */
+.story-section {
+    background-color: #0a0a0a; /* Fondo muy oscuro casi negro */
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.subtitle-gold {
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.story-text h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.story-text p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* --- SECCIÓN CONTACTO --- */
+.contact-section {
+    background-color: #000;
+    padding: 80px 0 120px 0; /* Un poco más de espacio abajo */
+}
+
+.contact-intro {
+    color: #999;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    background: #111;
+    border: 1px solid #333;
+    padding: 40px;
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-5px);
+    background: #151515;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #000;
+    border: 1px solid #d4af37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #d4af37;
+}
+
+.contact-card h3 {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.btn-text {
+    color: #d4af37;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Responsive para Contacto */
+@media (max-width: 768px) {
+    .contact-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
