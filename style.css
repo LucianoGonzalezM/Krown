@@ -520,3 +520,105 @@ footer {
         max-width: 350px;
     }
 }
+
+/* =========================================
+   SECCIÓN PARTNERS / LOGOS
+   ========================================= */
+   .partners-section {
+    padding: 4rem 0; /* Ajustá este espacio para que coincida con tus otras secciones */
+    text-align: center;
+}
+
+.partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem; /* Espacio entre logos */
+    margin-top: 2rem;
+}
+
+.partner-logo {
+    max-width: 150px; /* Tamaño máximo del logo */
+    height: auto;
+    
+    /* ACÁ ESTÁ LA MAGIA: Esto los vuelve grises y un poco transparentes */
+    filter: grayscale(100%) opacity(60%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* EFECTO HOVER (Opcional) */
+/* Al pasar el mouse, el logo recupera su color original y se agranda apenitas */
+.partner-logo:hover {
+    filter: grayscale(0%) opacity(100%);
+    transform: scale(1.05);
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .partners-grid {
+        gap: 2rem;
+    }
+    .partner-logo {
+        max-width: 100px;
+    }
+}
+
+/* =========================================
+   SECCIÓN SERVICIOS
+   ========================================= */
+   .services-section {
+    padding: 5rem 0;
+    text-align: center;
+    /* Un fondo sutilmente distinto para separarlo del resto */
+    background-color: rgba(255, 255, 255, 0.02); 
+}
+
+.services-text {
+    max-width: 800px; /* Evita que el texto sea muy ancho y cansador de leer */
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.services-cta {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2); /* Borde doradito súper sutil */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.services-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.services-cta p {
+    margin-bottom: 1.5rem;
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.services-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap; /* Para que en celulares los botones queden uno abajo del otro */
+}
+
+@media (max-width: 768px) {
+    .services-cta {
+        padding: 1.5rem;
+    }
+    .services-buttons {
+        flex-direction: column;
+    }
+    .services-buttons .btn {
+        width: 100%;
+    }
+}
